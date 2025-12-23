@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday ✨</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display&display=swap" rel="stylesheet">
+
+<style>
+:root { --ink:#2e3d36; }
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:"Cormorant Garamond",serif;
+  overflow:hidden;
+}
+
+/* ===== INTRO ===== */
+#intro{
+  position:fixed; inset:0;
+  background:radial-gradient(circle at 50% 20%,#f4f8ec,#e3f2e8,#b7dccb,#8fbfaf);
+  display:flex; align-items:center; justify-content:center;
+  z-index:1000;
+  animation:fadeOut 1.6s ease forwards;
+  animation-delay:4.6s;
+}
+.intro-content{text-align:center;animation:rise 4s ease}
+.intro-moon{font-size:4rem}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1}}
+@keyframes fadeOut{to{opacity:0;pointer-events:none}}
+
+/* ===== MAIN ===== */
+#site{
+  min-height:100vh;
+  background-image:url("bg.jpeg"); /* CHANGE IMAGE HERE */
+  background-size:cover;
+  background-position:center;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;
+  animation:fadeIn 2s ease forwards;
+  animation-delay:5s;
+}
+@keyframes fadeIn{to{opacity:1}}
+
+.container{
+  max-width:680px;
+  padding:3rem 2.2rem 3.2rem;
+  text-align:center;
+
+  background:
+    linear-gradient(
+      rgba(95, 236, 140, 0.5),
+      rgba(4, 86, 50, 0.32)
+    );
+
+  border-radius:34px;
+
+  box-shadow:
+    0 22px 60px rgba(6, 225, 232, 0.1),
+    inset 0 1px 0 rgba(107, 160, 147, 0.55);
+}
+
+h1{
+  font-family:"Playfair Display",serif;
+  font-size:2.4rem;
+  letter-spacing:0.04em;
+}
+
+.subtitle{
+  margin-top:0.7rem;
+  font-style:italic;
+  opacity:0.68;
+}
+
+.card{
+  margin-top:2.4rem;
+  padding:1.6rem 1.8rem;
+
+  background:
+    linear-gradient(
+      rgba(8, 162, 105, 0.72),
+      rgba(109, 212, 216, 0.6)
+    );
+
+  border-radius:22px;
+
+  box-shadow:
+    0 10px 26px rgba(0,0,0,0.06);
+  
+  line-height:1.65;
+}
+.card br{
+  display:block;
+  margin:0.4rem 0;
+}
+.container,
+.card{
+  border-top-left-radius:32px 30px;
+  border-bottom-right-radius:28px 30px;
+}
+
+
+/* ===== HAMBURGER ===== */
+.hamburger{
+  position:fixed;top:22px;left:22px;
+  font-size:1.7rem;cursor:pointer;
+  background:rgba(255,255,255,.7);
+  padding:.6rem .9rem;border-radius:14px;
+  z-index:900;
+}
+
+/* ===== SIDE MENU ===== */
+.side-menu{
+  position:fixed;left:0;top:0;height:100vh;width:300px;
+  background:
+    linear-gradient(rgba(255,255,255,.8),rgba(255,255,255,.8)),
+    url("fairy-bg.jpeg");
+  background-size:cover;
+  transform:translateX(-100%);
+  transition:.5s ease;
+  z-index:800;
+}
+.side-menu.open{transform:translateX(0)}
+.side-content{padding:2rem;text-align:center;font-style:italic}
+.side-btn{
+  background:rgba(255,255,255,.85);
+  padding:1rem;border-radius:18px;
+  margin-top:1rem;cursor:pointer;
+}
+
+/* ===== SLIDESHOW ===== */
+.slideshow{
+  position:fixed;inset:0;
+  background:rgba(230,244,238,.9);
+  backdrop-filter:blur(14px);
+  display:none;
+  align-items:center;justify-content:center;
+  z-index:1200;
+}
+.slide-box{
+  width:min(85%,520px);
+  background:rgba(255,255,255,.85);
+  padding:1.6rem;
+  border-radius:32px;
+  text-align:center;
+}
+/* MEME IMAGES — fit inside card properly */
+.meme-show .slide-box img {
+  aspect-ratio: auto;
+  max-height: 60vh;
+  object-fit: contain;
+  background: rgba(255,255,255,0.4);
+}
+.meme-show .slide-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slide-box img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:24px;
+  transition:opacity .4s ease;
+}
+.slide-caption{
+  margin-top:.8rem;
+  font-style:italic;
+  opacity:.75;
+}
+.controls{
+  margin-top:1rem;
+  display:flex;justify-content:space-between;
+}
+.controls button{
+  width:44px;height:44px;border:none;
+  border-radius:50%;
+  background:rgba(255,255,255,.7);
+  font-size:1.4rem;cursor:pointer;
+}
+.close{
+  position:absolute;top:24px;right:28px;
+  cursor:pointer;font-size:1.2rem;
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+  <div class="intro-content">
+    <div class="intro-moon">🌙</div>
+    <div style="margin-top:1rem;letter-spacing:.1em">for Sanjla</div>
+  </div>
+</div>
+
+<!-- HAMBURGER -->
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+<!-- SIDE MENU -->
+<div id="sideMenu" class="side-menu">
+  <div class="side-content">
+    <h3>⋆ fairy corners ⋆</h3>
+    <div class="side-btn" onclick="openMemory()">🫧 memory corner</div>
+    <div class="side-btn" onclick="openMeme()">♑ meme corner</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div id="site">
+  <div class="container">
+    <h1>Happy Birthday, Sanch</h1>
+    <div class="subtitle">To another beautiful year🥂🥂🥂</div>
+    <div class="card">
+        May this year bring more abundance and more opportunities into your life.
+        <br>And may you achieve anything and everything you have envisioned for yourself.<br>
+        We love you so much!
+        <br>Yours truly, 
+        <br>Lucy and V
+    </div>
+  </div>
+</div>
+
+<!-- MEMORY SLIDESHOW -->
+<div id="memoryShow" class="slideshow">
+  <div class="close" onclick="closeSlides()">✕</div>
+  <div class="slide-box">
+    <img id="memoryImg">
+    <p id="slideCaption" class="slide-caption"></p>
+    <div class="controls">
+      <button onclick="prev()">‹</button>
+      <button onclick="next()">›</button>
+    </div>
+  </div>
+</div>
+
+<!-- MEME SLIDESHOW -->
+<div id="memeShow" class="slideshow meme-show">
+  <div class="close" onclick="closeSlides()">✕</div>
+  <div class="slide-box">
+    <img id="memeImg">
+    <p id="slideCaption" class="slide-caption"></p>
+    <div class="controls">
+      <button onclick="prev()">‹</button>
+      <button onclick="next()">›</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== DATA =====
+const memorySlides = [
+      { src: "photo1.jpeg", caption: "This year you made a lot of new memories with new friends" },
+      { src: "photo2.jpeg", caption: "And you glowed more with each photo taken" },
+      { src: "photo5.jpeg", caption: "We love you more than Thoren(he needs to stop)"},
+      { src: "photo6.jpeg", caption: "And other days you served Cunt" },
+      { src: "photo7.jpeg", caption: "And even more Cunt" },
+      { src: "photo8.jpeg", caption: "And you had fun with aunty!" },
+      { src: "photo9.jpeg", caption: "Serving Cunt again" },
+      { src: "photo10.jpeg", caption: "Serving Cunt with your moped" },
+      { src: "photo3.jpeg", caption: "And there isnt a day we dont miss you, you have carved a home in us that does not feel whole without you,<br>We love you so much Sanch.<br> Happy birthday!!!" },
+    ];
+    const memeSlides = [
+  { src: "img1.jpeg", caption: "" },
+  { src: "img2.jpeg", caption: "" },
+  { src: "img3.jpeg", caption: "" },
+  { src: "img4.jpeg", caption: "" },
+  { src: "img5.jpeg", caption: "" },
+  { src: "img6.jpeg", caption: "" },
+  { src: "img7.jpeg", caption: "" },
+  { src: "img8.jpeg", caption: "" },
+  { src: "img9.jpeg", caption: "" },
+  { src: "img10.jpeg", caption: "" },
+  { src: "img11.jpeg", caption: "" },
+  { src: "img12.jpeg", caption: "" },
+  { src: "img13.jpeg", caption: "" },
+  { src: "img14.jpeg", caption: "" },
+  { src: "img15.jpeg", caption: "" },
+  { src: "img16.jpeg", caption: "" },
+  { src: "img17.jpeg", caption: "" }
+];
+
+
+// ===== STATE =====
+let slides=[],index=0,imgEl=null,capEl=null,active=null;
+
+// ===== MENU =====
+function toggleMenu(){
+  document.getElementById("sideMenu").classList.toggle("open");
+}
+
+// ===== OPEN =====
+function openMemory(){
+  slides=memorySlides;
+  imgEl=document.getElementById("memoryImg");
+  capEl=document.getElementById("slideCaption");
+  open("memoryShow");
+}
+function openMeme(){
+  slides=memeSlides;
+  imgEl=document.getElementById("memeImg");
+  capEl=document.getElementById("slideCaption");
+  open("memeShow");
+}
+function open(id){
+  document.getElementById("sideMenu").classList.remove("open");
+  active=document.getElementById(id);
+  index=0;
+  update(true);
+  active.style.display="flex";
+}
+
+// ===== SLIDES =====
+function closeSlides(){
+  document.querySelectorAll(".slideshow").forEach(s=>s.style.display="none");
+}
+function next(){index=(index+1)%slides.length;update()}
+function prev(){index=(index-1+slides.length)%slides.length;update()}
+function update(initial=false){
+  if(!imgEl)return;
+  if(!initial){imgEl.style.opacity=0;capEl.style.opacity=0}
+  setTimeout(()=>{
+    imgEl.src=slides[index].src;
+    capEl.innerHTML=slides[index].caption||"";
+    imgEl.style.opacity=1;
+    capEl.style.opacity=slides[index].caption?0.75:0;
+  },initial?0:300);
+}
+
+// ESC
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape")closeSlides();
+});
+</script>
+
+</body>
+</html>
